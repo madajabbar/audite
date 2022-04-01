@@ -15,6 +15,7 @@ use App\Http\Controllers\ExampleController;
 */
 
 Route::prefix('admin')->group(function () {
+    // example
     Route::get('/dashboard', function () {
         return view('example.dashboard');
     })->name('dashboard');
@@ -29,6 +30,15 @@ Route::prefix('admin')->group(function () {
     Route::get('/chartapexjs', function () {
         return view('example.chart');
     })->name('chartapexjs');
+    // end example
+    Route::get('rat/list', [App\Http\Controllers\Admin\ManajemenPerencanaan\RATController::class,'list'])->name('rat.list');
+    // do coding
+    Route::resource('assign-assessment',App\Http\Controllers\Admin\RiskAssessment\AssignAssessmentController::class);
+    Route::resource('assessment',App\Http\Controllers\Admin\RiskAssessment\AssessmentController::class);
+    Route::resource('review-pka',App\Http\Controllers\Admin\RiskAssessment\ReviewPKAController::class);
+    Route::resource('rat',App\Http\Controllers\Admin\ManajemenPerencanaan\RATController::class);
+    Route::resource('rap',App\Http\Controllers\Admin\ManajemenPerencanaan\RAPController::class);
+    Route::resource('perencanaan-audit',App\Http\Controllers\Admin\ManajemenAudit\PerencanaanAuditController::class);
 });
 
 Route::get('/dashboard', function () {
